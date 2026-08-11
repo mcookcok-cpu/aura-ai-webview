@@ -41,6 +41,11 @@ jobs:
         gradle --version
         cordova --version
 
+    - name: Install Required Android SDK Packages
+      run: |
+        yes | sdkmanager --licenses
+        sdkmanager "platforms;android-33" "build-tools;33.0.2" "platform-tools"
+
     - name: Install Dependencies
       run: npm install
 
