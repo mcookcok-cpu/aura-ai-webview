@@ -20,9 +20,6 @@
     <platform name="android">
         <allow-intent href="http://*/*" />
         <allow-intent href="https://*/*" />
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true" android:networkSecurityConfig="@xml/network_security_config" />
-        </edit-config>
         <hook src="hooks/after_prepare/010_patch_mainactivity.js" type="after_prepare" />
     </platform>
 </widget>
