@@ -5,14 +5,15 @@
   "description": "Aura AI WebView Wrapper for Local Server and AI Gateway",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests configured\"",
+    "build:android": "cordova platform add android@12.0.0 && cordova build android --debug"
   },
   "keywords": [
     "ecosystem:cordova"
   ],
   "author": "OTTO & User",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "cordova-android": "^12.0.0"
   }
 }

@@ -2,7 +2,7 @@
 <widget id="com.aura.webview" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Aura AI</name>
     <description>Aura AI WebView Wrapper with Native TTS and Downloader</description>
-    <author email="support@aura.local" href="https://aura.local">OTTO & User</author>
+    <author email="support@aura.local" href="https://aura.local">OTTO &amp; User</author>
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
