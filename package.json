@@ -1,0 +1,18 @@
+{
+  "name": "com.aura.webview",
+  "displayName": "Aura AI",
+  "version": "1.0.0",
+  "description": "Aura AI WebView Wrapper for Local Server and AI Gateway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "OTTO & User",
+  "license": "MIT",
+  "dependencies": {
+    "cordova-android": "^12.0.0"
+  }
+}

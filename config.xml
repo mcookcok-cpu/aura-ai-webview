@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.aura.webview" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Aura AI</name>
+    <description>Aura AI WebView Wrapper with Native TTS and Downloader</description>
+    <author email="support@aura.local" href="https://aura.local">OTTO & User</author>
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="*" />
+    <access origin="*" />
+    
+    <preference name="Orientation" value="default" />
+    <preference name="BackgroundColor" value="0xff0a0f1d" />
+    <preference name="HideSplashScreenSpinner" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="AppendUserAgent" value=" AuraWebView/1.0.0" />
+    <preference name="AllowFileAccessFromFileURLs" value="true" />
+    <preference name="AllowUniversalAccessFromFileURLs" value="true" />
+
+    <platform name="android">
+        <allow-intent href="http://*/*" />
+        <allow-intent href="https://*/*" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" android:networkSecurityConfig="@xml/network_security_config" />
+        </edit-config>
+        <hook src="hooks/after_prepare/010_patch_mainactivity.js" type="after_prepare" />
+    </platform>
+</widget>

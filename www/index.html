@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aura AI — Gateway</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #070b19; color: #e2e8f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .card { background: #111827; border: 1px solid #1f2937; border-radius: 20px; width: 100%; max-width: 420px; padding: 32px 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); text-align: center; }
+        .logo { width: 72px; height: 72px; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4); }
+        .logo svg { width: 40px; height: 40px; fill: #ffffff; }
+        h1 { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+        p { font-size: 14px; color: #9ca3af; margin-bottom: 24px; line-height: 1.5; }
+        .input-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; font-size: 12px; font-weight: 600; color: #d1d5db; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        input[type="text"] { width: 100%; padding: 14px 16px; background: #1f2937; border: 1px solid #374151; border-radius: 12px; color: #ffffff; font-size: 16px; outline: none; transition: border-color 0.2s; }
+        input[type="text"]:focus { border-color: #3b82f6; }
+        .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.1s, opacity 0.2s; margin-bottom: 12px; }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: #ffffff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); }
+        .btn-secondary { background: #1f2937; color: #9ca3af; border: 1px solid #374151; }
+        .status { margin-top: 16px; font-size: 13px; color: #10b981; min-height: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h1>Aura AI</h1>
+        <p>Aura WebView Wrapper untuk mengakses server lokal, BottoAI, atau AI Gateway.</p>
+        
+        <div class="input-group">
+            <label for="serverUrl">Alamat Server (LAN / IP)</label>
+            <input type="text" id="serverUrl" value="http://192.168.1.100:7777" placeholder="http://192.168.1.100:7777">
+        </div>
+
+        <button class="btn btn-primary" id="connectBtn">Hubungkan</button>
+        <button class="btn btn-secondary" id="resetBtn">Reset Default</button>
+        
+        <div class="status" id="statusText"></div>
+    </div>
+
+    <script>
+        const DEFAULT_URL = "http://192.168.1.100:7777";
+        const urlInput = document.getElementById('serverUrl');
+        const connectBtn = document.getElementById('connectBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const statusText = document.getElementById('statusText');
+
+        // Load saved URL
+        const savedUrl = localStorage.getItem('aura_server_url') || DEFAULT_URL;
+        urlInput.value = savedUrl;
+
+        connectBtn.addEventListener('click', () => {
+            let url = urlInput.value.trim();
+            if (!url) {
+                alert('Masukkan alamat server yang valid!');
+                return;
+            }
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'http://' + url;
+            }
+            localStorage.setItem('aura_server_url', url);
+            statusText.textContent = 'Menghubungkan ke ' + url + '...';
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400);
+        });
+
+        resetBtn.addEventListener('click', () => {
+            urlInput.value = DEFAULT_URL;
+            localStorage.setItem('aura_server_url', DEFAULT_URL);
+            statusText.textContent = 'Reset ke URL default.';
+            setTimeout(() => { statusText.textContent = ''; }, 2000);
+        });
+    </script>
+</body>
+</html>
